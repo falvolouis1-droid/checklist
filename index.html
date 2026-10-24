@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f5f0" />
+    <title>Checklist</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="home">
+      <header class="topbar">
+        <nav class="navigation" aria-label="Main navigation">
+          <button class="nav-tab is-active" type="button" data-view="home" aria-current="page">Home</button>
+          <button class="nav-tab" type="button" data-view="checklist">Checklist</button>
+          <button class="nav-tab" type="button" data-view="info">Info</button>
+          <button class="nav-tab" type="button" data-view="statistics">Statistic</button>
+        </nav>
+        <div class="profile-area">
+          <button
+            class="profile-button"
+            type="button"
+            aria-label="Open profile menu"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="profile-menu"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="8" r="3.25" />
+              <path d="M5.5 19c.65-3.1 2.95-4.75 6.5-4.75s5.85 1.65 6.5 4.75" />
+            </svg>
+          </button>
+          <div class="profile-menu" id="profile-menu" role="menu" aria-label="Profile options" aria-hidden="true" inert>
+            <button class="profile-menu-item" type="button" role="menuitem" data-profile-action="open">Profile</button>
+            <button class="profile-menu-item" type="button" role="menuitem" data-profile-action="info">About</button>
+            <span class="menu-divider" aria-hidden="true"></span>
+            <button class="profile-menu-item profile-menu-item--logout" type="button" role="menuitem">Log out</button>
+          </div>
+        </div>
+      </header>
+
+      <section class="welcome" id="home-view" aria-labelledby="page-title">
+        <h1 id="page-title">Checklist</h1>
+        <span class="title-rule" aria-hidden="true"></span>
+        <button class="start-button" id="start-checklist" type="button">
+          <span>Check your list</span>
+          <span class="button-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4.5 12h14m-5.5-5.5 5.5 5.5-5.5 5.5" />
+            </svg>
+          </span>
+        </button>
+      </section>
+
+      <section class="routine-screen is-hidden" id="checklist-view" aria-labelledby="routine-title" aria-hidden="true" inert>
+        <div class="routine-content">
+          <div class="routine-heading">
+            <div>
+              <p class="eyebrow">YOUR DAY, AT YOUR PACE</p>
+              <h2 id="routine-title">Daily routine</h2>
+            </div>
+            <div class="progress-count" aria-live="polite">
+              <span class="progress-value" id="progress-value">0/12</span>
+              <span class="progress-caption">completed</span>
+            </div>
+          </div>
+
+          <div class="progress-track" role="progressbar" aria-label="Routine progress" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0">
+            <span class="progress-fill"></span>
+          </div>
+
+          <section class="rest-prompt" aria-labelledby="rest-title">
+            <div class="rest-prompt-copy">
+              <span class="prompt-mark" aria-hidden="true">↗</span>
+              <div>
+                <h3 id="rest-title">Is today a rest day?</h3>
+                <p>We’ll tailor your routine to match.</p>
+              </div>
+            </div>
+            <div class="rest-actions">
+              <button class="rest-choice rest-choice--yes" type="button" data-rest-day="true">Yes, rest day</button>
+              <button class="rest-choice rest-choice--no" type="button" data-rest-day="false">No, training day</button>
+            </div>
+          </section>
+
+          <div class="day-summary is-hidden" id="day-summary" aria-live="polite">
+            <p class="day-summary-text"></p>
+            <button class="change-day" type="button">Change day</button>
+          </div>
+
+          <div class="routine-list is-locked" id="routine-list" aria-label="Daily routine" aria-live="polite"></div>
+          <button class="complete-button is-hidden" id="complete-checklist" type="button">
+            <span>Complete checklist</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7" /></svg>
+          </button>
+        </div>
+      </section>
+
+      <section class="statistics-screen is-hidden" id="statistics-view" aria-labelledby="statistics-title" aria-hidden="true" inert>
+        <div class="statistics-content">
+          <h2 id="statistics-title" class="statistics-number" aria-live="polite">0</h2>
+          <p class="statistics-label">checklists completed</p>
+        </div>
+      </section>
+
+      <section class="info-screen is-hidden" id="info-view" aria-labelledby="info-title" aria-hidden="true" inert>
+        <div class="info-content">
+          <span class="info-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="m7 16 6 6L25 10" />
+            </svg>
+          </span>
+          <h2 id="info-title">A little consistency goes a long way.</h2>
+          <p>Follow this list to maximize your quality of life.</p>
+        </div>
+      </section>
+
+      <section class="profile-screen is-hidden" id="profile-view" aria-labelledby="profile-name" aria-hidden="true" inert>
+        <div class="profile-content">
+          <div class="profile-photo-wrap">
+            <button class="profile-photo-button" id="profile-photo-button" type="button" aria-label="Edit profile photo">
+              <img class="profile-photo is-hidden" id="profile-photo" alt="Profile" />
+              <svg class="profile-photo-placeholder" id="profile-photo-placeholder" viewBox="0 0 48 48" aria-hidden="true">
+                <circle cx="24" cy="17" r="7" />
+                <path d="M10 40c1.5-7.3 6.4-11 14-11s12.5 3.7 14 11" />
+              </svg>
+              <span class="photo-edit-mark" aria-hidden="true">+</span>
+            </button>
+            <input class="visually-hidden" id="profile-photo-input" type="file" accept="image/*" />
+          </div>
+
+          <p class="eyebrow profile-eyebrow">CHECKLIST MEMBER</p>
+          <h2 id="profile-name">Louis F</h2>
+          <p class="profile-member">Checklist Member</p>
+          <p class="profile-bio" id="profile-bio">Dedicated</p>
+          <button class="edit-bio-button" id="edit-bio-button" type="button">Edit bio</button>
+
+          <form class="bio-editor is-hidden" id="bio-editor">
+            <label for="bio-input">Your bio</label>
+            <textarea id="bio-input" maxlength="120" rows="3"></textarea>
+            <div class="bio-editor-actions">
+              <button class="bio-cancel" id="bio-cancel" type="button">Cancel</button>
+              <button class="bio-save" type="submit">Save bio</button>
+            </div>
+          </form>
+
+          <p class="profile-serial">Serial ID: <span>#1020</span></p>
+          <button class="logout-button" id="logout-button" type="button">Log out</button>
+          <p class="profile-status" id="profile-status" aria-live="polite"></p>
+        </div>
+      </section>
+      <p class="app-status" id="app-status" role="status" aria-live="polite"></p>
+    </main>
+    <script src="main.js" defer></script>
+  </body>
+</html>
